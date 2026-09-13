@@ -1,4 +1,5 @@
 import { gameState } from "../app.js";
+import { getNewBoard } from "../data/sudokuApi.js";
 import handleCellClick from "../events/cellClick.js";
 import { clearHighlightedCells, clearSelectedCells } from "./cells.js";
 
@@ -185,4 +186,14 @@ export function checkSolution() {
 		}
 	}
 	return true;
+}
+
+export function startNewGame(difficulty) {
+	getNewBoard({ difficulty })
+		.then((newBoard) => {
+			initializeGame(newBoard);
+		})
+		.catch((error) => {
+			console.error("Error fetching new board:", error);
+		});
 }

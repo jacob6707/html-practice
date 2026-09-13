@@ -36,10 +36,12 @@ export default function handleKeypress(event) {
 			}
 			break;
 		case "ArrowUp":
+			event.preventDefault();
 			moveSelection("up");
 			break;
 		case "ArrowDown":
 			moveSelection("down");
+			event.preventDefault();
 			break;
 		case "ArrowLeft":
 			moveSelection("left");

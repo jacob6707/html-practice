@@ -1,12 +1,11 @@
-import { getNewBoard } from "./data/sudokuApi.js";
 import handleGameButtonClick from "./events/gameButtons.js";
 import handleKeypress from "./events/keypress.js";
 import State from "./model/State.js";
 import { clearHighlightedCells, clearSelectedCells } from "./util/cells.js";
 import {
-	initializeGame,
 	resetGame,
 	selectCell,
+	startNewGame,
 	updateGrid,
 } from "./util/sudoku.js";
 
@@ -54,13 +53,7 @@ document.querySelector("#new-game").addEventListener("click", () => {
 	/** @type{HTMLSelectElement} */
 	const difficultySelect = document.querySelector("#difficulty-select");
 	const selectedDifficulty = difficultySelect.value;
-	getNewBoard({ difficulty: selectedDifficulty })
-		.then((newBoard) => {
-			initializeGame(newBoard);
-		})
-		.catch((error) => {
-			console.error("Error fetching new board:", error);
-		});
+	startNewGame(selectedDifficulty);
 	//initializeGame(examplePuzzle);
 });
 
@@ -93,6 +86,6 @@ gameState.subscribe((state) => {
 	});
 });
 
-initializeGame(examplePuzzle);
+startNewGame("easy");
 
 window.resetGame = resetGame;
