@@ -19,7 +19,7 @@ export default class State {
 	}
 
 	getState() {
-		return { ...this.#state }; // Return a copy to prevent direct manipulation
+		return structuredClone(this.#state); // Return a copy to prevent direct manipulation
 	}
 
 	notify() {

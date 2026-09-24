@@ -46,7 +46,7 @@ export async function getNewBoard({ difficulty = "easy" }) {
 	);
 
 	const randomIndex = Math.floor(Math.random() * difficultyPuzzles.length);
-	const { puzzle, solution } = difficultyPuzzles[randomIndex];
+	const puzzle = difficultyPuzzles[randomIndex];
 
-	return { puzzle, solution, difficulty };
+	return puzzle;
 }

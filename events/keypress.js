@@ -22,7 +22,7 @@ export default function handleKeypress(event) {
 				notedCells.delete(`${row}-${col}-${i}`);
 			}
 			grid[selectedCell.dataset.row][selectedCell.dataset.col] = key;
-			gameState.setState({ grid });
+			return gameState.setState({ grid });
 		}
 	}
 	switch (key) {
@@ -32,7 +32,7 @@ export default function handleKeypress(event) {
 			if (selectedCell && !selectedCell.dataset.prefilled) {
 				const grid = gameState.getState().grid;
 				grid[selectedCell.dataset.row][selectedCell.dataset.col] = "0";
-				gameState.setState({ grid });
+				return gameState.setState({ grid });
 			}
 			break;
 		case "ArrowUp":
@@ -40,8 +40,8 @@ export default function handleKeypress(event) {
 			moveSelection("up");
 			break;
 		case "ArrowDown":
-			moveSelection("down");
 			event.preventDefault();
+			moveSelection("down");
 			break;
 		case "ArrowLeft":
 			moveSelection("left");

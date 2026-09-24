@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			.main-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 1rem;
+				background: #ddd;
+				gap: 1rem;
+			}
+			.main-nav ul {
+				list-style: none;
+				display: flex;
+				flex-direction: row;
+				gap: 1rem;
+			}
+			.main-nav li {
+				cursor: pointer;
+				padding: 0.5rem 1rem;
+				border-radius: 8px;
+			}
+			.main-nav li:hover {
+				background-color: #ccc;
+			}
+			#menu-toggle {
+				display: none;
+				border: none;
+				border-radius: 8px;
+				font-size: 1.5rem;
+				padding: 0.5rem 1rem;
+				cursor: pointer;
+			}
+
+			#menu-toggle:hover {
+				background-color: #555;
+			}
+
+			.logo {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			@media (max-width: 600px) {
+				.main-nav {
+					display: none;
+					width: 100%;
+				}
+				.main-nav.show {
+					display: block;
+				}
+				.main-nav ul {
+					flex-direction: column;
+					gap: 0;
+				}
+				#menu-toggle {
+					display: block;
+				}
+				.main-header {
+					flex-direction: column;
+					justify-content: flex-start;
+				}
+				.logo {
+					width: 100%;
+				}
+				.main-nav li {
+					width: 100%;
+					text-align: center;
+					padding: 1rem 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header class="main-header">
+			<div class="logo">
+				<h1>Menu</h1>
+				<button id="menu-toggle">☰</button>
+			</div>
+			<nav class="main-nav">
+				<ul>
+					<li id="item1">Item 1</li>
+					<li id="item2">Item 2</li>
+					<li id="item3">Item 3</li>
+				</ul>
+			</nav>
+		</header>
+		<main id="content">
+			<div id="page1">
+				<h1>Page 1</h1>
+			</div>
+			<div id="page2">
+				<h1>Page 2</h1>
+			</div>
+			<div id="page3">
+				<h1>Page 3</h1>
+			</div>
+		</main>
+		<script>
+			const menuToggle = document.getElementById("menu-toggle");
+			const navMenu = document.querySelector(".main-nav");
+
+			menuToggle.addEventListener("click", () => {
+				navMenu.classList.toggle("show");
+			});
+
+			const item1 = document.getElementById("item1");
+			const item2 = document.getElementById("item2");
+			const item3 = document.getElementById("item3");
+			const page1 = document.getElementById("page1");
+			const page2 = document.getElementById("page2");
+			const page3 = document.getElementById("page3");
+			page1.style.display = "block";
+			page2.style.display = "none";
+			page3.style.display = "none";
+
+			item1.addEventListener("click", () => {
+				page1.style.display = "block";
+				page2.style.display = "none";
+				page3.style.display = "none";
+			});
+
+			item2.addEventListener("click", () => {
+				page1.style.display = "none";
+				page2.style.display = "block";
+				page3.style.display = "none";
+			});
+
+			item3.addEventListener("click", () => {
+				page1.style.display = "none";
+				page2.style.display = "none";
+				page3.style.display = "block";
+			});
+		</script>
+	</body>
+</html>
